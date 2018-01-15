@@ -1,0 +1,11 @@
+{
+  "title": "grender.js使用指南",
+  "author": "陈帅华",
+  "description": "grender.js使用指南",
+  "language": "zh-hans",
+  "root": ".",
+  "plugins": [
+    "-sharing",
+    "code"
+  ]
+}
