@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "es2015",
+    "strict": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "esModuleInterop": true
+  },
+  "typedocOptions": {
+    "mode": "file",
+    "out": "../www/app/airglass/typedoc/",
+    "name": "Airglass.js官方文档.alpha",
+    "readme": "none",
+    "theme": "minimal"
+  }
+}
