@@ -1,0 +1,30 @@
+{
+  "name": "grender",
+  "version": "1.0.0",
+  "description": "airglass.js渲染引擎",
+  "main": "./src/main.ts",
+  "scripts": {
+    "build": "webpack",
+    "typedoc": "typedoc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airglass/grender.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airglass/grender/issues"
+  },
+  "homepage": "https://github.com/airglass/grender#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1",
+    "ts-loader": "^8.0.13",
+    "typedoc": "^0.20.9",
+    "typescript": "^4.1.3"
+  }
+}
