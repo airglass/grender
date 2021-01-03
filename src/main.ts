@@ -1,4 +1,4 @@
-import Airglass from './Airglass';
+import Grender from './Grender';
 import Renderable from './Renderable';
 import Effect from './Effect';
 import AlterProgress from './AlterProgress';
@@ -17,12 +17,8 @@ function extend(extendedGlass, prototype) {
   return Glass;
 }
 
-console.info(`Airglass.js
-Email: lanserdi@163.com
-Doc: http://www.shuaihuajun.com/airglass/typedoc/`);
-
 export {
-  Airglass,
+  Grender,
   Progress,
   AlterProgress,
   Effect,

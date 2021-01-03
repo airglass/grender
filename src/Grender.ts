@@ -2,7 +2,7 @@ import Glass from './Glass';
 import Renderer from './Renderer';
 import Group from './Group';
 
-export default class Airglass extends Glass {
+export default class Grender extends Glass {
   rendererManager: Group;
   bounds: any;
   width: number;
