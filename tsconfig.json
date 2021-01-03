@@ -8,9 +8,10 @@
     "esModuleInterop": true
   },
   "typedocOptions": {
+    "entryPoints": ["src/main.ts"],
     "mode": "file",
-    "out": "../www/app/airglass/typedoc/",
-    "name": "Airglass.js官方文档.alpha",
+    "out": "./docs/",
+    "name": "grender官方文档.alpha",
     "readme": "none",
     "theme": "minimal"
   }
