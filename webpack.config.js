@@ -8,7 +8,7 @@ module.exports = {
     library: 'grender',
     libraryTarget: 'umd',
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].min.js'
   },
   mode: 'production',
   devtool: 'hidden-source-map',
