@@ -4,6 +4,7 @@
   "description": "airglass.js渲染引擎",
   "main": "./src/main.ts",
   "scripts": {
+    "start": "webpack -w",
     "build": "webpack",
     "typedoc": "typedoc",
     "test": "echo \"Error: no test specified\" && exit 1"
