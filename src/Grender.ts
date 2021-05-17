@@ -17,9 +17,12 @@ export default class Grender extends Glass {
 
     this.element.style.position = 'relative';
     this.setStyleSize(this.width, this.height);
-    this.bounds = this.getBounds();
+    this.updateBounds();
 
     this._setInteractable();
+  }
+  updateBounds(){
+    this.bounds = this.getBounds();
   }
   getScrollOffsets() {
     return {
@@ -68,6 +71,7 @@ export default class Grender extends Glass {
     return this;
   }
   _eventHandler(e: any) {
+    this.updateBounds();
     this.event = {};
     let touch = e.touches && e.touches[0];
     switch (e.type) {
@@ -75,8 +79,8 @@ export default class Grender extends Glass {
         this.event.interactor = 'mouse';
         this.isMouseDown = true;
         this.event.type = 'touchstart';
-        this.event.x = e.layerX * this.DPR;
-        this.event.y = e.layerY * this.DPR;
+        this.event.x = (e.clientX - this.bounds.x) * this.DPR;
+        this.event.y = (e.clientY - this.bounds.y) * this.DPR;
         break;
       case 'touchstart':
         this.event.interactor = 'finger';
@@ -90,8 +94,8 @@ export default class Grender extends Glass {
         if (this.isMouseDown) {
           this.event.type = 'touchmove';
         }
-        this.event.x = e.layerX * this.DPR;
-        this.event.y = e.layerY * this.DPR;
+        this.event.x = (e.clientX - this.bounds.x) * this.DPR;
+        this.event.y = (e.clientY - this.bounds.y) * this.DPR;
         break;
       case 'touchmove':
         this.event.interactor = 'finger';
