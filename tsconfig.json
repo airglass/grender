@@ -1,18 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "module": "es2015",
     "strict": true,
     "noImplicitAny": false,
     "noImplicitThis": false,
     "esModuleInterop": true
   },
-  "typedocOptions": {
-    "entryPoints": ["src/main.ts"],
-    "mode": "file",
-    "out": "./docs/",
-    "name": "grender官方文档.alpha",
-    "readme": "none",
-    "theme": "minimal"
-  }
 }

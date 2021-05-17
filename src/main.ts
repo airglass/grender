@@ -9,7 +9,7 @@ function extend(extendedGlass, prototype) {
     extendedGlass.call(this, params);
     prototype._constructor && prototype._constructor.call(this, params);
   };
-  function foo(){}
+  function foo() { }
   foo.prototype = extendedGlass.prototype;
   Glass.prototype = new foo();
   Glass.prototype.constructor = Glass;
@@ -17,8 +17,12 @@ function extend(extendedGlass, prototype) {
   return Glass;
 }
 
+function create(opts) {
+  return new Grender(opts);
+}
+
 export {
-  Grender,
+  create,
   Progress,
   AlterProgress,
   Effect,
