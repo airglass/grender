@@ -1,14 +1,16 @@
 {
-  "name": "grender",
+  "name": "fuirender",
   "version": "1.0.0",
   "description": "canvas render enginer",
-  "main": "./src/main.ts",
+  "main": "./dist/fuirender.js",
   "scripts": {
     "start": "webpack -w",
     "build": "webpack",
-    "typedoc": "typedoc src/main.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "typedoc": "typedoc src/main.ts"
   },
+  "files": [
+    "dist/fuirender.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/airglass/grender.git"

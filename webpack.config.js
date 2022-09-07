@@ -1,31 +1,31 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  entry: {
-    "grender": "./src/main.ts"
-  },
+  entry: "./src/main.ts",
   output: {
-    library: 'grender',
-    libraryTarget: 'umd',
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].min.js'
+    library: "fuirender",
+    libraryTarget: "umd",
+    path: path.resolve(__dirname, "dist"),
+    filename: "fuirender.js",
   },
-  mode: 'production',
-  devtool: 'hidden-source-map',
+  mode: "production",
+  devtool: "hidden-source-map",
   resolve: {
     symlinks: true,
-    extensions: ['.ts']
+    extensions: [".ts"],
   },
-  target: 'web',
+  target: "web",
   module: {
     unknownContextCritical: false,
-    rules: [{
-      test: /\.ts$/,
-      use: [
-        {
-          loader: 'ts-loader'
-        }
-      ]
-    }]
-  }
-}
+    rules: [
+      {
+        test: /\.ts$/,
+        use: [
+          {
+            loader: "ts-loader",
+          },
+        ],
+      },
+    ],
+  },
+};
