@@ -9,6 +9,15 @@ import GasValue from "./components/GasValue"
 import FixWood from './components/FixWood'
 import GasJar from "./components/GasJar"
 import FenXiYi from './components/FenXiYi';
+import PipeLine from "./components/PipeLine"
+import Grid from "./components/Grid"
+import Values from "./components/Values"
+import WaterProgress from './components/WaterProgress';
+import VideoCapture from "./components/VideoCapture"
+import TextComp from "./components/TextComp"
+import Smoke from "./components/Smoke"
+import ImageElement from './components/ImageElement';
+import SelectedRect from './components/SelectedRect';
 
 function extend(extendedGlass, prototype) {
   let Glass = function (params) {
@@ -38,5 +47,14 @@ export {
   GasValue,
   FixWood,
   GasJar,
-  FenXiYi
+  FenXiYi,
+  PipeLine,
+  Grid,
+  Values,
+  WaterProgress,
+  VideoCapture,
+  TextComp,
+  Smoke,
+  ImageElement,
+  SelectedRect
 }

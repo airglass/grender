@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" style="width: 800px; height: 800px"></div>
+    <script src="../../fuirender.js"></script>
+    <script>
+      const global_config = {
+        tool: "pipeline", // 当前工具
+        panel: "properties",
+      };
+
+      const g = fuirender.create({
+        element: document.querySelector("#main"),
+        width: 900,
+        height: 1000,
+      });
+      const gridLayer = g.addRenderer("grid");
+      const grid = new fuirender.Grid({
+        width: g.width * g.DPR,
+        height: g.height * g.DPR,
+        color: "#808080",
+        lineWidth: 2,
+        angle: 0,
+        step: 110,
+        scale: 1,
+        alpha: 0.5,
+      });
+      gridLayer.scene.children.push(grid);
+      gridLayer.reRender();
+      const mainLayer = g.addRenderer();
+      const pipelineLayer = g.addRenderer();
+      const pipeline1 = new fuirender.PipeLine({
+        context: pipelineLayer.element,
+        polyline: [
+          [220, 218],
+          [770, 220],
+          [768, 438],
+          [1320, 438],
+          [1320, 878],
+          [220, 878],
+          [220, 658],
+          [1538, 660],
+          [1540, 274],
+          [1870, 274],
+          [1870, 660],
+          [2144, 660],
+          [2144, 276],
+          [2420, 276],
+          [2418, 548],
+          [2858, 548],
+          [2862, 272],
+          [3404, 268],
+          [3400, 2254],
+          [2242, 2260],
+          [2244, 1984],
+          [3242, 1978],
+          [3246, 1208],
+          [2750, 1208],
+          [2752, 1760],
+          [3072, 1758],
+          [3080, 934],
+          [2202, 938],
+          [2200, 1650],
+          [1760, 1648],
+          [1758, 1206],
+          [2144, 936],
+          [1428, 934],
+          [1428, 1540],
+          [716, 1544],
+          [714, 1054],
+          [1212, 1054],
+          [1208, 1800],
+          [372, 1798],
+          [368, 2210],
+          [1930, 2210],
+          [1928, 1846],
+          [2530, 1848],
+          [2526, 722],
+          [2968, 720],
+        ],
+      });
+      const pipelineControllerLayer = g.addRenderer();
+      {
+        const controllerPoints = pipeline1.getControllerPoints();
+        pipelineControllerLayer.scene.children = controllerPoints;
+        pipelineControllerLayer.reRender();
+      }
+      pipelineLayer.scene.children.push(pipeline1);
+      pipelineLayer.reRender();
+      const deviceLayer = g.addRenderer();
+      const devicesList = [
+        {
+          x: 3200,
+          y: 720,
+        },
+        {
+          x: 2000,
+          y: 1300,
+        },
+        {
+          x: 520,
+          y: 630,
+        },
+        {
+          x: 520,
+          y: 630,
+        },
+        {
+          x: 520,
+          y: 630,
+        },
+      ];
+      devicesList.forEach((d) => {
+        const values = new fuirender.Values(d);
+        deviceLayer.scene.children.push(values);
+      });
+      deviceLayer.reRender();
+      let currentTouchstartInstance, lastX, lastY;
+
+      {
+        let currentInstance, lastX, lastY;
+        g.subscribe((event) => {
+          if (global_config.tool !== "move") return;
+          if (event.type === "touchstart") {
+            const currentInstances = deviceLayer.getElementsContainPoint(event);
+            if (currentInstances.length) {
+              currentInstance = currentInstances[0];
+              lastX = event.x;
+              lastY = event.y;
+            }
+          }
+          if (event.type === "touchmove") {
+            if (!currentInstance) return;
+            const { x, y } = event;
+            const offsetX = x - lastX;
+            const offsetY = y - lastY;
+            currentInstance.x += offsetX;
+            currentInstance.y += offsetY;
+            currentInstance.updatePath();
+            lastX = event.x;
+            lastY = event.y;
+            deviceLayer.reRender();
+          }
+          if (event.type === "touchend") {
+            currentInstance = undefined;
+          }
+        });
+      }
+
+      {
+        let currentControllerPoint;
+        let lastX, lastY;
+        g.subscribe((event) => {
+          if (global_config.tool !== "pipeline") return;
+          if (event.type === "touchstart") {
+            const currentInstances =
+              pipelineControllerLayer.getElementsContainPoint(event);
+            if (currentInstances.length) {
+              currentControllerPoint = currentInstances[0];
+              lastX = event.x;
+              lastY = event.y;
+            }
+          }
+          if (event.type === "touchmove") {
+            if (!currentControllerPoint) return;
+            const { x, y } = event;
+            const offsetX = x - lastX;
+            const offsetY = y - lastY;
+            currentControllerPoint.x += offsetX;
+            currentControllerPoint.y += offsetY;
+            currentControllerPoint.updatePath();
+            const idx = currentControllerPoint.userData.idx;
+            currentControllerPoint.userData.host.movePoint(
+              idx,
+              currentControllerPoint.x,
+              currentControllerPoint.y
+            );
+            lastX = event.x;
+            lastY = event.y;
+            pipelineControllerLayer.reRender();
+          }
+          if (event.type === "touchend") {
+            if (!currentControllerPoint) return;
+            currentControllerPoint = undefined;
+          }
+        });
+      }
+
+      g.subscribe((event) => {
+        if (global_config.tool !== "select") return;
+        if (event.type === "touchstart") {
+          const currentInstances = mainLayer.getElementsContainPoint(event);
+          if (currentInstances.length) {
+            mainLayer.scene.children.forEach(
+              (child) => (child.selected = false)
+            );
+            currentTouchstartInstance =
+              currentInstances[currentInstances.length - 1];
+            currentTouchstartInstance.selected = true;
+          }
+        }
+        if (event.type === "touchmove") {
+          if (currentTouchstartInstance) {
+            lastX = lastX || event.x;
+            lastY = lastY || event.y;
+            const offsetX = event.x - lastX || 0;
+            const offsetY = event.y - lastY || 0;
+            currentTouchstartInstance.x += offsetX;
+            currentTouchstartInstance.y += offsetY;
+            currentTouchstartInstance.updatePath();
+            currentTouchstartInstance.selected = true;
+            lastX = event.x;
+            lastY = event.y;
+          }
+        }
+        if (event.type === "touchend") {
+          currentTouchstartInstance = null;
+          lastX = lastY = null;
+        }
+      });
+
+      function render() {
+        requestAnimationFrame(render);
+        gridLayer.reRender();
+        pipelineLayer.reRender();
+      }
+
+      render();
+    </script>
+  </body>
+</html>
