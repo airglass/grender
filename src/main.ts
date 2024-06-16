@@ -4,6 +4,12 @@ import Effect from './Effect';
 import AlterProgress from './AlterProgress';
 import Progress from './Progress';
 
+import LinkLine from "./components/LinkLine"
+import GasValue from "./components/GasValue"
+import FixWood from './components/FixWood'
+import GasJar from "./components/GasJar"
+import FenXiYi from './components/FenXiYi';
+
 function extend(extendedGlass, prototype) {
   let Glass = function (params) {
     extendedGlass.call(this, params);
@@ -27,5 +33,10 @@ export {
   AlterProgress,
   Effect,
   Renderable,
-  extend
+  extend,
+  LinkLine,
+  GasValue,
+  FixWood,
+  GasJar,
+  FenXiYi
 }

@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>???组态</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                background-color: #1e1e1e;
+                background-image: url(bg.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        </style>
+    </head>
+    <body>
+        <div
+            style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                padding-right: 300px;
+            "
+        >
+            <div
+                style="
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                <div
+                    id="mainEl"
+                    style="
+                        float: left;
+                        background-color: rgba(255, 255, 255, 0);
+                    "
+                ></div>
+            </div>
+            <div
+                style="
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 300px;
+                    height: 100%;
+                    background-color: #fff;
+                "
+            >
+                <div
+                    style="
+                        background-color: rgb(29, 132, 241);
+                        color: #fff;
+                        padding: 16px;
+                        text-align: center;
+                    "
+                >
+                    站房状态检测
+                </div>
+                <div style="padding: 10px">
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>CO泄漏</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>排气风扇</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>水浸状态</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>采样总管</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>声光报警器</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                            color: rgb(248, 124, 129);
+                        "
+                    >
+                        <div>钢气瓶</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            异常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                version="1.1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M511.996418 23.520693c-269.76705 0-488.454748 218.688721-488.454748 488.454748 0 269.768073 218.688721 488.453724 488.454748 488.453724 269.766027 0 488.454748-218.685651 488.454748-488.453724C1000.451166 242.209414 781.762445 23.520693 511.996418 23.520693zM769.334391 715.155956l-54.156434 54.156434L511.996418 566.129828 308.813856 769.31239l-54.155411-54.156434L457.841008 511.975441 254.658446 308.792878l54.155411-54.155411L511.996418 457.82003l203.182562-203.182562 54.156434 54.155411L566.151829 511.975441 769.334391 715.155956z"
+                                    fill="rgb(249,120,128)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>空压机</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>动态校准仪</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>零气发生器</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                            color: rgb(248, 124, 129);
+                        "
+                    >
+                        <div>监测仪器</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            异常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                version="1.1"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M511.996418 23.520693c-269.76705 0-488.454748 218.688721-488.454748 488.454748 0 269.768073 218.688721 488.453724 488.454748 488.453724 269.766027 0 488.454748-218.685651 488.454748-488.453724C1000.451166 242.209414 781.762445 23.520693 511.996418 23.520693zM769.334391 715.155956l-54.156434 54.156434L511.996418 566.129828 308.813856 769.31239l-54.155411-54.156434L457.841008 511.975441 254.658446 308.792878l54.155411-54.155411L511.996418 457.82003l203.182562-203.182562 54.156434 54.155411L566.151829 511.975441 769.334391 715.155956z"
+                                    fill="rgb(249,120,128)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>烟雾报警器</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>空调</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>室内球机</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>湿温度计</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            margin: 5px 0;
+                        "
+                    >
+                        <div>电表</div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
+                        >
+                            正常
+                            <svg
+                                style="margin-left: 4px"
+                                viewBox="0 0 1024 1024"
+                                width="20"
+                                height="20"
+                            >
+                                <path
+                                    d="M85.333333 512C85.333333 276.352 276.309333 85.333333 512 85.333333c235.648 0 426.666667 190.976 426.666667 426.666667 0 235.648-190.976 426.666667-426.666667 426.666667-235.648 0-426.666667-190.976-426.666667-426.666667z m376.64 74.325333l-105.642666-105.642666a21.248 21.248 0 0 0-30.122667 0.042666c-8.32 8.32-8.213333 21.973333-0.064 30.101334l120.810667 120.832a21.248 21.248 0 0 0 30.122666-0.085334l211.157334-211.157333a21.290667 21.290667 0 0 0 0-30.186667 21.397333 21.397333 0 0 0-30.250667 0.106667l-196.010667 195.989333z"
+                                    fill="rgb(58,176,82)"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <div
+                            style="
+                                background-color: rgb(127, 211, 249);
+                                padding: 14px;
+                                color: #fff;
+                                text-align: center;
+                                display: inline-block;
+                                border-radius: 6px;
+                                line-height: 1;
+                                margin: 10px 0 5px;
+                                font-size: 14px;
+                            "
+                        >
+                            生成****详细报告
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div
+                        style="
+                            background-color: rgb(243, 249, 253);
+                            padding: 10px;
+                            border: 1px solid #eee;
+                            border-left: none;
+                            border-bottom: none;
+                            text-align: center;
+                        "
+                    >
+                        优化建议
+                    </div>
+                    <div style="padding: 10px; color: #222; line-height: 1.75">
+                        <div>1. 加装***模块，防护及备份**</div>
+                        <div>2. 建议对标气****</div>
+                        <div>3. 颗粒物PM10检测仪器未正常运行,仪器离线</div>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+        </div>
+        <script src="./fuirender.js"></script>
+        <script>
+            const g = fuirender.create({
+                element: document.querySelector("#mainEl"),
+                width: 900,
+                height: 600,
+            });
+
+            const lineRenderer = g.addRenderer("line");
+            const mainRenderer = g.addRenderer("main");
+
+            lineRenderer.scene.children.push(
+                new fuirender.LinkLine({
+                    points: [
+                        [400 * g.DPR, 1 * g.DPR],
+                        [400 * g.DPR, 460 * g.DPR],
+                    ],
+                }),
+            );
+            lineRenderer.scene.children.push(
+                new fuirender.LinkLine({
+                    points: [
+                        [575 * g.DPR, 240 * g.DPR],
+                        [575 * g.DPR, 1 * g.DPR],
+                    ],
+                }),
+            );
+            lineRenderer.scene.children.push(
+                new fuirender.LinkLine({
+                    points: [
+                        [595 * g.DPR, 1 * g.DPR],
+                        [595 * g.DPR, 210 * g.DPR],
+                        [675 * g.DPR, 210 * g.DPR],
+                        [675 * g.DPR, 240 * g.DPR],
+                    ],
+                }),
+            );
+            lineRenderer.scene.children.push(
+                new fuirender.LinkLine({
+                    points: [
+                        [270 * g.DPR, 450 * g.DPR],
+                        [270 * g.DPR, 500 * g.DPR],
+                        [340 * g.DPR, 500 * g.DPR],
+                        [340 * g.DPR, 420 * g.DPR],
+                        [380 * g.DPR, 420 * g.DPR],
+                    ],
+                }),
+            );
+            lineRenderer.scene.children.push(
+                new fuirender.LinkLine({
+                    points: [
+                        [200 * g.DPR, 450 * g.DPR],
+                        [200 * g.DPR, 520 * g.DPR],
+                        [340 * g.DPR, 520 * g.DPR],
+                        [340 * g.DPR, 420 * g.DPR],
+                        [380 * g.DPR, 420 * g.DPR],
+                    ],
+                }),
+            );
+            lineRenderer.scene.children.push(
+                new fuirender.LinkLine({
+                    points: [
+                        [140 * g.DPR, 450 * g.DPR],
+                        [140 * g.DPR, 540 * g.DPR],
+                        [340 * g.DPR, 540 * g.DPR],
+                        [340 * g.DPR, 420 * g.DPR],
+                        [380 * g.DPR, 420 * g.DPR],
+                    ],
+                }),
+            );
+            lineRenderer.scene.children.push(
+                new fuirender.LinkLine({
+                    points: [
+                        [700 * g.DPR, 450 * g.DPR],
+                        [920 * g.DPR, 450 * g.DPR],
+                    ],
+                }),
+            );
+            const smokeDevice = new fuirender.FenXiYi({
+                name: "质控仪",
+                deviceName: "鸿海环保",
+                x: 370 * g.DPR,
+                y: 240 * g.DPR,
+            });
+            mainRenderer.scene.children.push(smokeDevice);
+            mainRenderer.scene.children.push(
+                new fuirender.FenXiYi({
+                    name: "采样分析仪1号",
+                    deviceName: "鸿海环保",
+                    x: 520 * g.DPR,
+                    y: 240 * g.DPR,
+                }),
+            );
+            mainRenderer.scene.children.push(
+                new fuirender.FenXiYi({
+                    name: "采样分析仪2号",
+                    deviceName: "鸿海环保",
+                    x: 620 * g.DPR,
+                    y: 240 * g.DPR,
+                }),
+            );
+            mainRenderer.scene.children.push(
+                new fuirender.FixWood({
+                    x: 100 * g.DPR,
+                    y: 322 * g.DPR,
+                    width: 220 * g.DPR,
+                    height: 12 * g.DPR,
+                }),
+            );
+            mainRenderer.scene.children.push(
+                new fuirender.FixWood({
+                    x: 100 * g.DPR,
+                    y: 400 * g.DPR,
+                    width: 220 * g.DPR,
+                    height: 12 * g.DPR,
+                }),
+            );
+            mainRenderer.scene.children.push(
+                new fuirender.FixWood({
+                    x: 100 * g.DPR,
+                    y: 470 * g.DPR,
+                    width: 220 * g.DPR,
+                    height: 12 * g.DPR,
+                }),
+            );
+            mainRenderer.scene.children.push(
+                new fuirender.GasJar({
+                    x: 120 * g.DPR,
+                    y: 480 * g.DPR,
+                    name: "SO2",
+                }),
+            );
+            mainRenderer.scene.children.push(
+                new fuirender.GasJar({
+                    x: 185 * g.DPR,
+                    y: 480 * g.DPR,
+                    name: "NO",
+                }),
+            );
+            mainRenderer.scene.children.push(
+                new fuirender.GasJar({
+                    x: 250 * g.DPR,
+                    y: 480 * g.DPR,
+                    name: "CO",
+                }),
+            );
+            const gasVal1 = new fuirender.GasValue({
+                x: 142 * g.DPR,
+                y: 247 * g.DPR,
+                size: 24 * g.DPR,
+            });
+            mainRenderer.scene.children.push(gasVal1);
+            const gasVal2 = new fuirender.GasValue({
+                x: 208 * g.DPR,
+                y: 247 * g.DPR,
+                size: 24 * g.DPR,
+            });
+            mainRenderer.scene.children.push(gasVal2);
+            const gasVal3 = new fuirender.GasValue({
+                x: 274 * g.DPR,
+                y: 247 * g.DPR,
+                size: 24 * g.DPR,
+            });
+            mainRenderer.scene.children.push(gasVal3);
+            let currentTouchstartInstance, lastX, lastY;
+            g.subscribe((event) => {
+                if (event.type == "touchstart") {
+                    const [currentInstance] =
+                        mainRenderer.getElementsContainPoint(event);
+                    if (currentInstance) {
+                        currentTouchstartInstance = currentInstance;
+                    }
+                }
+                if (event.type == "touchmove") {
+                    if (currentTouchstartInstance) {
+                        lastX = lastX || event.x;
+                        lastY = lastY || event.y;
+                        const offsetX = event.x - lastX || 0;
+                        const offsetY = event.y - lastY || 0;
+                        currentTouchstartInstance.x += offsetX;
+                        currentTouchstartInstance.y += offsetY;
+                        currentTouchstartInstance.updatePath();
+                        lastX = event.x;
+                        lastY = event.y;
+                        console.log(event.x, event.y);
+                    }
+                }
+                if (event.type == "touchend") {
+                    currentTouchstartInstance = null;
+                    lastX = lastY = null;
+                }
+            });
+
+            function render(time) {
+                requestAnimationFrame(render);
+                smokeDevice.value = (Math.random() * 1000).toFixed(1);
+                mainRenderer.reRender();
+                lineRenderer.reRender();
+            }
+
+            setInterval(() => {
+                gasVal1.setVal(Math.random() * 10);
+                gasVal2.setVal(Math.random() * 10);
+                gasVal3.setVal(Math.random() * 10);
+            }, 2000);
+
+            render();
+        </script>
+    </body>
+</html>
